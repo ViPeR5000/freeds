@@ -47,6 +47,12 @@ void parseShellyEM(char *json, int sensor)
           // inverter.gridv = roundf((float)root["voltage"]);
           Error.RecepcionDatos = false;
         }
+      case 3: // Medida de baterias inverter.wtogrid
+        if (root["is_valid"] == true) {
+          inverter.batteryWatts = roundf((float)root["power"]); // Potencia de red (Negativo: de red - Positivo: a red)
+          // inverter.gridv = roundf((float)root["voltage"]);
+        }
+        break;        
         break;
     }
     timers.ErrorRecepcionDatos = millis();
